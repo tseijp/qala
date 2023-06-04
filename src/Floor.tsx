@@ -2,16 +2,17 @@ import { Geometry, Base, Subtraction } from '@react-three/csg'
 import { TextureLoader, RepeatWrapping } from 'three'
 import { useLoader, useThree } from '@react-three/fiber'
 
-const rate = 4
+const rate = 8
 const gap = 0.5
 const d = 1
 
 export const Floor = () => {
   const { width, height } = useThree((state) => state.viewport)
+  const n = (width / 3) << 0 // 20
   const map = useLoader(TextureLoader, '/wood.jpg').clone()
   map.wrapS = RepeatWrapping
   map.wrapT = RepeatWrapping
-  map.repeat.set(rate * 2, 1)
+  map.repeat.set(n * 2, 1)
   return (
     // @ts-ignore
     <mesh position-y={-2 - d} rotation-x={-Math.PI / 2}>
@@ -20,15 +21,25 @@ export const Floor = () => {
         <Base>
           <boxGeometry args={[width * rate, height * rate, d]} />
         </Base>
-        {[-2, -1, 0, 1, 2].map((i) => (
-          // @ts-ignore
-          <Subtraction
-            key={i}
-            position-x={(i * width * rate) / 8}
-            position-z={d / 2}
-          >
-            <boxGeometry args={[gap, height * rate, d]} />
-          </Subtraction>
+        {[...Array(n)].map((_, i) => (
+          <>
+            {/*@ts-ignore */}
+            <Subtraction
+              key={i}
+              position-x={-(i * width * rate) / n / 2}
+              position-z={0.1}
+            >
+              <boxGeometry args={[gap, height * rate, d]} />
+            </Subtraction>
+            {/*@ts-ignore */}
+            <Subtraction
+              key={i}
+              position-x={(i * width * rate * 3) / n / 2}
+              position-z={0.1}
+            >
+              <boxGeometry args={[gap, height * rate, d]} />
+            </Subtraction>
+          </>
         ))}
       </Geometry>
       <meshPhongMaterial

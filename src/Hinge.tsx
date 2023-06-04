@@ -27,10 +27,11 @@ export const Hinge = (props: HingeProps) => {
         </Base>
       </Geometry>
       <meshStandardMaterial
-        color="#49321c"
-        roughness={0.6}
-        metalness={0.3}
-        shininess={1000}
+        color="#efaa43"
+        specular="#FFFFFF"
+        roughness={0.2}
+        metalness={1}
+        shininess={10000}
         reflectivity={1}
       />
     </mesh>

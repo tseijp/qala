@@ -14,7 +14,6 @@ export const Stone = (props: StoneProps) => {
   const color = useMemo(() => {
     const palette = colors[(colors.length * Math.random()) << 0]
     const color = palette[(palette.length * Math.random()) << 0]
-    console.log(color)
     return color
   }, [])
   return (

@@ -5,7 +5,7 @@ import { FullScreen } from './FullScreen'
 const wrapStyle = {
   position: 'absolute',
   color: 'white',
-  fontSize: '7rem',
+  fontSize: '3rem',
   textShadow: `0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.75)`,
   fontWeight: 'bold',
   transform: 'translateY(-2rem)',
