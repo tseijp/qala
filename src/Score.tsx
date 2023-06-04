@@ -30,6 +30,7 @@ export const Score = () => {
   const { _, reset, change } = useGame()
   return (
     <FullScreen display>
+      {/* <img alt="" src="/tmp.png" style={_debugStyle} /> */}
       <div style={wrapStyle}>
         <div>
           {_.end && _.score[0] > _.score[1] && 'winnter'}
@@ -51,3 +52,15 @@ export const Score = () => {
     </FullScreen>
   )
 }
+
+const _debugStyle = {
+  opacity: 0.2,
+  top: 0,
+  left: 0,
+  position: 'fixed',
+  objectFit: 'contain',
+  width: '100%',
+  height: '100%',
+  border: 'solid 2px',
+  background: 'red',
+} as any
