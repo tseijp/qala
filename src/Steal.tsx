@@ -1,3 +1,4 @@
+import React from 'react'
 import { useGame } from './Game'
 import { FullScreen } from './FullScreen'
 
@@ -19,7 +20,7 @@ const wrapStyle = {
   border: '1px rgba(255,255,255,0.4) solid',
   borderBottom: '1px rgba(40,40,40,0.35) solid',
   borderRight: '1px rgba(40,40,40,0.35) solid',
-} as any
+} as React.CSSProperties
 
 export const Steal = () => {
   const { _ } = useGame()

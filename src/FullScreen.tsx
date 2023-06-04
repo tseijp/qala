@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useRefEvent } from 'reev/react'
 import { Html } from '@react-three/drei'
+import type { Vec3 } from './types'
 
-const calcPos = (_: any, camera: any) => camera.position
+const calcPos = <T extends { position: Vec3 }>(_: unknown, camera: T) =>
+  camera.position
 
 const htmlStyle = {
   display: 'flex',
@@ -12,13 +14,19 @@ const htmlStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   transform: 'translate(calc(100vw - 50%), calc(100vh - 50%))',
+} as React.CSSProperties
+
+export interface FullScreenProps {
+  children: React.ReactNode
+  display?: number | boolean
+  timeout?: number
 }
 
-export const FullScreen = (props: any) => {
+export const FullScreen = (props: FullScreenProps) => {
   const { children, display = false, timeout = 0 } = props
 
   const self = useRefEvent({
-    mount(target: any) {
+    mount(target: HTMLDivElement) {
       target.parentElement.style.display = display ? 'flex' : 'none'
       target.parentElement.style.pointerEvents = 'none'
       if (display && timeout > 0)

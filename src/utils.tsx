@@ -16,7 +16,7 @@ export const scoreStone = ($ = [0]) => {
 }
 
 export const moveStone = ($ = [0], i = 0) => {
-  const ret = [...$] as any,
+  const ret = [...$],
     l = $.length
   ret[(i = i % l)] = 0
   for (let j = i + 1; j < $[i] + i + 1; ret[j++ % l]++);

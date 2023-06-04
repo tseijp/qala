@@ -1,3 +1,4 @@
+import React from 'react'
 import { Subtraction } from '@react-three/csg'
 import { Html } from '@react-three/drei'
 import { useGame } from './Game'
@@ -14,15 +15,15 @@ const wrapStyle = (disabled = false) =>
     position: 'relative',
     userSelect: 'none',
     fontSize: '0.9rem',
-  } as any)
+  } as React.CSSProperties)
 
 const countStyle = {
   position: 'absolute',
   right: 0,
   bottom: 0,
-} as any
+} as React.CSSProperties
 
-const Clickable = ({ i }: any) => {
+const Clickable = ({ i }: { i: number }) => {
   const { $, _, click } = useGame()
   const n = $.length
   const h = (n / 2) << 0

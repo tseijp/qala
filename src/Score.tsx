@@ -1,5 +1,6 @@
 import { useGame } from './Game'
 import { FullScreen } from './FullScreen'
+import React from 'react'
 
 const wrapStyle = {
   top: '5%',
@@ -21,7 +22,7 @@ const wrapStyle = {
   border: '1px rgba(255,255,255,0.4) solid',
   borderBottom: '1px rgba(40,40,40,0.35) solid',
   borderRight: '1px rgba(40,40,40,0.35) solid',
-} as any
+} as React.CSSProperties
 
 const spanStyle = { marginLeft: '1rem', fontSize: '1.5rem' }
 

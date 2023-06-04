@@ -12,13 +12,19 @@ const colors = [
   '#FFFFFF',
 ]
 
-export const Stone = (props: any) => {
-  const { i, active, ...other } = props as any // @TODO FIX
+export interface StoneProps {
+  i: number
+  active: boolean
+}
+
+export const Stone = (props: StoneProps) => {
+  const { i, active } = props
   const [x, z] = useMemo(() => [Math.random(), Math.random()], [])
   const color = useMemo(() => colors[(colors.length * Math.random()) << 0], [])
   return (
     <RigidBody colliders="hull" position={[x, i, z]}>
-      <Sphere args={[1, 16, 8]} scale={[0.4, 0.2, 0.4]} castShadow {...other}>
+      {/* @ts-ignore */}
+      <Sphere args={[1, 16, 8]} scale={[0.4, 0.2, 0.4]} castShadow>
         <meshPhongMaterial
           color={color}
           transparent

@@ -18,8 +18,9 @@ createRoot(document.getElementById('root') as HTMLElement).render(
     shadows
   >
     <ambientLight />
+    {/* @ts-ignore */}
     <pointLight position={[10, 10, 10]} castShadow />
-    <color attach="background" args={['#e2e2e2']} />
+    <color attach="background" args={['#212121']} />
     <OrbitControls />
     <Suspense fallback="loading">
       <Physics timeStep={1 / 128}>
