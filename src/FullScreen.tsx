@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { useRefEvent } from 'reev/react'
 import { Html } from '@react-three/drei'
-import type { Vec3 } from './types'
 
-const calcPos = <T extends { position: Vec3 }>(_: unknown, camera: T) =>
-  camera.position
+const calcPos = (_: unknown, camera: any) => camera.position
 
 const htmlStyle = {
   display: 'flex',

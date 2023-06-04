@@ -30,7 +30,7 @@ export const Stone = (props: StoneProps) => {
           transparent
           shininess={1000}
           reflectivity={1}
-          reflactionRation={1}
+          reflectionRation={1}
           opacity={active ? 1 : 0.6}
         />
       </Sphere>
