@@ -1,16 +1,7 @@
 import { useMemo } from 'react'
 import { Sphere } from '@react-three/drei'
 import { RigidBody } from '@react-three/rapier'
-
-const colors = [
-  '#FF0000',
-  '#00FF00',
-  '#0000FF',
-  '#FFFF00',
-  '#00FF00',
-  '#00FFFF',
-  '#FFFFFF',
-]
+import colors from 'nice-color-palettes'
 
 export interface StoneProps {
   i: number
@@ -19,8 +10,12 @@ export interface StoneProps {
 
 export const Stone = (props: StoneProps) => {
   const { i, active } = props
-  const [x, z] = useMemo(() => [Math.random(), Math.random()], [])
-  const color = useMemo(() => colors[(colors.length * Math.random()) << 0], [])
+  const [x, z] = useMemo(() => [Math.random() / 4, Math.random() / 4], [])
+  const color = useMemo(() => {
+    const palette = colors[(colors.length * Math.random()) << 0]
+    const color = palette[(palette.length * Math.random()) << 0]
+    return color
+  }, [])
   return (
     <RigidBody colliders="hull" position={[x, i, z]}>
       {/* @ts-ignore */}

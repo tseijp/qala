@@ -3,18 +3,19 @@ import { Subtraction } from '@react-three/csg'
 import { Html } from '@react-three/drei'
 import { useGame } from './Game'
 
-const capsuleArgs = [0.4, 1, 2, 16]
+const capsuleArgs = [0.68, 1, 2, 16]
 
 const wrapStyle = (disabled = false) =>
   ({
-    width: 35,
-    height: 90,
+    width: 40,
+    height: 80,
     // opacity: 0.5,
-    // background: "red",
+    // background: 'red',
     cursor: disabled ? 'not-allowed' : 'pointer',
     position: 'relative',
     userSelect: 'none',
-    fontSize: '0.9rem',
+    fontSize: '0.7rem',
+    color: 'white',
   } as React.CSSProperties)
 
 const countStyle = {
@@ -23,7 +24,7 @@ const countStyle = {
   bottom: 0,
 } as React.CSSProperties
 
-const Clickable = ({ i }: { i: number }) => {
+const Clickable = ({ i, z }: { i: number; z: number }) => {
   const { $, _, click } = useGame()
   const n = $.length
   const h = (n / 2) << 0
@@ -32,7 +33,7 @@ const Clickable = ({ i }: { i: number }) => {
   if (i % h === h - 1) return
 
   return (
-    <Html center transform>
+    <Html center transform position-z={-z / 2}>
       <div style={wrapStyle(disabled)} onClick={click[i]}>
         <div style={countStyle}>{$[i]}</div>
       </div>
@@ -48,7 +49,7 @@ export const Hole = (props: any) => {
       <Subtraction>
         <capsuleGeometry args={capsuleArgs} />
       </Subtraction>
-      <Clickable i={i} />
+      <Clickable i={i} z={other.position[1]} />
     </group>
   )
 }

@@ -1,38 +1,29 @@
 // @ts-ignore
 import { createRoot } from 'react-dom/client'
-import { Suspense } from 'react'
-import { OrbitControls, Stage } from '@react-three/drei'
-import { Physics } from '@react-three/rapier'
+import { Suspense, lazy } from 'react'
+import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Game } from './Game'
-import { Board } from './Board'
-import { Just } from './Just'
-import { Score } from './Score'
-import { Steal } from './Steal'
+import { Floor } from './Floor'
+
+const App = lazy(() => import('./App'))
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <Canvas
-    camera={{ position: [0, 10, 5] }}
+    camera={{ position: [0, 10, 1.8] }}
     style={{ top: 0, left: 0, position: 'fixed' }}
     gl={{ localClippingEnabled: true }}
     shadows
   >
-    <ambientLight />
     {/* @ts-ignore */}
     <pointLight position={[10, 10, 10]} castShadow />
-    <color attach="background" args={['#212121']} />
-    <OrbitControls />
+    <ambientLight />
+    <color attach="background" args={['#8c7a5f']} />
+    <OrbitControls enablePan={false} enableRotate={false} enableZoom={false} />
     <Suspense fallback="loading">
-      <Physics timeStep={1 / 128}>
-        <Stage adjustCamera={0.8} preset="upfront" environment={null}>
-          <Game>
-            <Just />
-            <Score />
-            <Steal />
-            <Board />
-          </Game>
-        </Stage>
-      </Physics>
+      <App />
+    </Suspense>
+    <Suspense fallback="loading">
+      <Floor />
     </Suspense>
   </Canvas>
 )
