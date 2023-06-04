@@ -24,7 +24,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
     <OrbitControls />
     <Suspense fallback="loading">
       <Physics timeStep={1 / 128}>
-        <Stage adjustCamera={0.8} preset="upfront">
+        <Stage adjustCamera={0.8} preset="upfront" environment={null}>
           <Game>
             <Just />
             <Score />
