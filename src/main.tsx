@@ -19,10 +19,10 @@ createRoot(document.getElementById('root') as HTMLElement).render(
     <ambientLight />
     <color attach="background" args={['#8c7a5f']} />
     <OrbitControls enablePan={false} enableRotate={false} enableZoom={false} />
-    <Suspense fallback="loading">
+    <Suspense>
       <App />
     </Suspense>
-    <Suspense fallback="loading">
+    <Suspense>
       <Floor />
     </Suspense>
   </Canvas>

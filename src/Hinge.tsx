@@ -17,7 +17,7 @@ export const Hinge = (props: HingeProps) => {
       <Geometry>
         {[0, 1, 2, 3].map((i) => (
           // @ts-ignore
-          <Addition position-y={(i * (h + gap)) / 16 - (h / 16 + gap)}>
+          <Addition key={i} position-y={(i * (h + gap)) / 16 - (h / 16 + gap)}>
             <cylinderGeometry args={[g, g, h / 16]} />
           </Addition>
         ))}
