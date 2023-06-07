@@ -83,9 +83,10 @@ const linkWrapStyle = {
   ...flexStyle,
   flexDirection: 'row',
   position: 'absolute',
-  bottom: '1rem',
-  left: '1rem',
-  gap: '1rem',
+  height: "4rem",
+  bottom: '4rem',
+  left: '2rem',
+  gap: '2rem',
 } as React.CSSProperties
 
 const linkIconStyle = {
@@ -101,8 +102,9 @@ const fullScreenStyle = {
   ...flexStyle,
   flexDirection: 'row',
   position: 'absolute',
-  bottom: '1rem',
-  right: '1rem',
+  height: "4rem",
+  bottom: '4.25rem',
+  right: '2rem',
 } as React.CSSProperties
 
 const fullScreenIconStyle = {
