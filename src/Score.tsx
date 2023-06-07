@@ -83,8 +83,8 @@ const linkWrapStyle = {
   ...flexStyle,
   flexDirection: 'row',
   position: 'absolute',
-  bottom: 'min(2.5vw, 2.5vh)',
-  right: 'min(2.5vw, 2.5vh)',
+  bottom: '1rem',
+  left: '1rem',
   gap: '1rem',
 } as React.CSSProperties
 
@@ -101,8 +101,8 @@ const fullScreenStyle = {
   ...flexStyle,
   flexDirection: 'row',
   position: 'absolute',
-  bottom: 'min(2.5vw, 2.5vh)',
-  left: 'min(2.5vw, 2.5vh)',
+  bottom: '1rem',
+  right: '1rem',
 } as React.CSSProperties
 
 const fullScreenIconStyle = {
