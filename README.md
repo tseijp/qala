@@ -4,10 +4,14 @@
 
 <details>
 <summary>
+
 It provides detailed instructions on installation,
 a walkthrough of the application structure, and code snippets for better understanding.
+
 </summary>
+
 インストール方法、アプリケーション構造の説明、コードスニペットなど、詳細な説明を提供します。
+
 </details>
 
 ## Table of Content
@@ -22,9 +26,13 @@ a walkthrough of the application structure, and code snippets for better underst
 
 <details>
 <summary>
+
 Clone the repository to your local machine.
+
 </summary>
+
 ローカルマシンにリポジトリをクローンします。
+
 </details>
 
 ```ruby
@@ -36,11 +44,15 @@ npm install
 
 <details>
 <summary>
+
 The `QALA | Mancala App` comes with a set of predefined scripts in the `package.json` file.
 Here is how you can use these scripts:
+
 </summary>
+
 `QALA | Mancala App` には、`package.json` ファイルにあらかじめ定義された一連のスクリプトが付属しています。
 以下に各スクリプトが何をするのかの簡単な説明を記載します：
+
 </details>
 
 ```ruby
@@ -55,9 +67,13 @@ npm run build
 
 <details>
 <summary>
+
 The main application is set up in the `src/main.tsx` file.
+
 </summary>
+
 メインのアプリケーション は `src/main.tsx` ファイルで設定されています。
+
 </details>
 
 ```tsx
@@ -86,13 +102,17 @@ createRoot(document.getElementById('root') as HTMLElement).render(
 
 <details>
 <summary>
+
 It uses the `Physics` component from `@react-three/rapier` to handle game physics,
 and `Stage` component from `@react-three/drei` to create a 3D stage for our game.
 Within this `Game` component, game logic exist.
+
 </summary>
+
 ゲームの物理を処理するために `@react-three/rapier` の `Physics` コンポーネントを、
-ゲームの3Dステージを作成するために `@react-three/drei` の `Stage` コンポーネントを使用します。
+ゲームの 3D ステージを作成するために `@react-three/drei` の `Stage` コンポーネントを使用します。
 この `Game` コンポーネントの中には、ゲームのロジックが存在します。
+
 </details>
 
 ```tsx
@@ -110,13 +130,17 @@ export const App = () => (
 )
 ```
 
-## Dependencies
+## Dependency List
 
 <details>
 <summary>
+
 The `QALA | Mancala App` uses a series of dependencies for its functionality.
+
 </summary>
+
 `QALA | Mancala App` は、その機能のために一連の依存関係を使用しています。
+
 </details>
 
 ![csg](https://img.shields.io/npm/v/@react-three/csg?style=flat&colorA=000000&colorB=000000)
