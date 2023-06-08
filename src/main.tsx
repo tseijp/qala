@@ -17,7 +17,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
     {/* @ts-ignore */}
     <pointLight position={[10, 10, 10]} castShadow />
     <ambientLight />
-    <color attach="background" args={['#8c7a5f']} />
+    <color attach="background" args={['#884D1B']} />
     <OrbitControls enablePan={false} enableRotate={false} enableZoom={false} />
     <Suspense>
       <App />
