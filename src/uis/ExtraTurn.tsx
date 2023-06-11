@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { useGame } from './Game'
-import { FullScreen } from './FullScreen'
+import { useGame } from '../Game'
+import { Html } from './Html'
 
 const wrapStyle = {
   position: 'absolute',
@@ -11,16 +11,16 @@ const wrapStyle = {
   transform: 'translateY(-1rem)',
 } as React.CSSProperties
 
-export const Just = () => {
+export const ExtraTurn = () => {
   const { _ } = useGame()
-  const justTime = useRef(0)
+  const extraTime = useRef(0)
 
-  if (_.just) justTime.current++
-  else justTime.current = 0
+  if (_.extra) extraTime.current++
+  else extraTime.current = 0
 
   return (
-    <FullScreen display={justTime.current} timeout={1000}>
+    <Html display={extraTime.current} timeout={1000}>
       <div style={wrapStyle}>Extra turn!</div>
-    </FullScreen>
+    </Html>
   )
 }

@@ -4,21 +4,21 @@ import {
   scoreStone,
   initStone,
   moveStone,
-  stealStone,
-  checkJust,
-  checkSteal,
+  captureStone,
+  checkExtra,
+  checkCapture,
   checkEnd,
 } from './utils'
 import type { GameStatus, GameState, Stones } from './types'
 
-const initStones = initStone(3, 3) as Stones
+const initStones = initStone(3, 4) as Stones
 const initStatus = {
-  end: checkEnd(initStones),
-  just: false,
-  steal: false,
-  start: true,
   current: false,
+  capture: false,
+  end: checkEnd(initStones),
+  extra: false,
   next: false,
+  start: true,
   move: 0,
   score: scoreStone(initStones),
   histories: [],
@@ -43,10 +43,10 @@ export const Game = ({ children }: { children: React.ReactNode }) => {
       _.move++
       _.start = false
       _.current = _.next
-      _.just = checkJust($, i)
-      _.steal = checkSteal($, i)
-      if (!_.just) _.next = !_.next
-      if (_.steal) stones = stealStone(stones, i)
+      _.extra = checkExtra($, i)
+      _.capture = checkCapture($, i)
+      if (!_.extra) _.next = !_.next
+      if (_.capture) stones = captureStone(stones, i)
       else stones = moveStone(stones, i)
       _.end = checkEnd(stones)
       _.score = scoreStone(stones)
@@ -70,12 +70,18 @@ export const Game = ({ children }: { children: React.ReactNode }) => {
     'stone-': () => void
     'length+': () => void
     'length-': () => void
+    basic: () => void
+    kalah: () => void
+    oware: () => void
     init: (dm: number, dn: number) => void
   }>({
     'stone+': () => change.init(0, 1),
     'stone-': () => change.init(0, -1),
     'length+': () => change.init(1, 0),
     'length-': () => change.init(-1, 0),
+    basic() {},
+    kalah() {},
+    oware() {},
     init(dm, dn) {
       const history = _.histories[0]
       if (!history) return

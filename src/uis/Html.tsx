@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useRefEvent } from 'reev/react'
-import { Html } from '@react-three/drei'
+import { Html as HTMLImpl } from '@react-three/drei'
 
 const calcPos = (_: unknown, camera: any) => camera.position
 
@@ -14,13 +14,13 @@ const htmlStyle = {
   transform: 'translate(calc(100vw - 50%), calc(100vh - 50%))',
 } as React.CSSProperties
 
-export interface FullScreenProps {
+export interface HtmlProps {
   children: React.ReactNode
   display?: number | boolean
   timeout?: number
 }
 
-export const FullScreen = (props: FullScreenProps) => {
+export const Html = (props: HtmlProps) => {
   const { children, display = false, timeout = 0 } = props
 
   const self = useRefEvent({
@@ -39,13 +39,13 @@ export const FullScreen = (props: FullScreenProps) => {
   }, [self, display, timeout])
 
   return (
-    <Html
+    <HTMLImpl
       ref={self.ref}
       fullscreen
       style={htmlStyle}
       calculatePosition={calcPos}
     >
       {children}
-    </Html>
+    </HTMLImpl>
   )
 }

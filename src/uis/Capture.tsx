@@ -1,6 +1,6 @@
 import React from 'react'
-import { useGame } from './Game'
-import { FullScreen } from './FullScreen'
+import { useGame } from '../Game'
+import { Html } from './Html'
 
 const wrapStyle = {
   position: 'absolute',
@@ -11,12 +11,12 @@ const wrapStyle = {
   transform: 'translateY(-2rem)',
 } as React.CSSProperties
 
-export const Steal = () => {
+export const Capture = () => {
   const { _ } = useGame()
 
   return (
-    <FullScreen display={_.steal} timeout={1000}>
+    <Html display={_.capture} timeout={1000}>
       <div style={wrapStyle}>Capture!</div>
-    </FullScreen>
+    </Html>
   )
 }

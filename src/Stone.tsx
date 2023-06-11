@@ -17,7 +17,7 @@ export const Stone = (props: StoneProps) => {
     return color
   }, [])
   return (
-    <RigidBody colliders="hull" position={[x, i, z]}>
+    <RigidBody colliders="hull" position={[x, i / 3, z]}>
       {/* @ts-ignore */}
       <Sphere args={[1, 16, 8]} scale={[0.4, 0.2, 0.4]} castShadow>
         <meshPhongMaterial
