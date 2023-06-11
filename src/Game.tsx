@@ -1,6 +1,5 @@
 import {
   useState,
-  useEffect,
   useContext,
   createContext,
   useRef,
@@ -25,7 +24,7 @@ const initStones: Stones = initStone(initSize, initSeed)
 const initStatus: GameStatus = {
   current: false,
   capture: false,
-  end: checkEnd(initStones),
+  end: checkEnd(initStones, initGameType),
   extra: false,
   next: false,
   start: true,
@@ -60,9 +59,9 @@ export const Game = ({ children }: { children: React.ReactNode }) => {
       _.extra = checkExtra($, i)
       _.capture = checkCapture($, i, _.type)
       if (!_.extra) _.next = !_.next
-      if (_.capture) stones = captureStone(stones, i)
-      else stones = moveStone(stones, i)
-      _.end = checkEnd(stones)
+      if (_.capture) stones = captureStone(stones, i, _.type)
+      else stones = moveStone(stones, i, _.type)
+      _.end = checkEnd(stones, _.type)
       _.score = scoreStone(stones, _.type)
       _.histories.push({ _: { ..._ }, $: stones })
       set(stones)

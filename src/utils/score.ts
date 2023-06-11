@@ -16,15 +16,10 @@ scoreStone.basic = ($ = [0]) => {
   return [a, b]
 }
 
-scoreStone.kalah = ($ = [0]) => {
+scoreStone.kalah = scoreStone.oware = ($ = [0]) => {
   const l = $.length,
     h = floor(l / 2),
     a = $.slice(0, h).reduce(_sum, 0),
     b = $.slice(h, l).reduce(_sum, 0)
   return [a, b]
-}
-
-scoreStone.oware = ($ = [0]) => {
-  // @TODO implement
-  return [0, 0]
 }

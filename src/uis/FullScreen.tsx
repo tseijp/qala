@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { EnterFullScreen } from '../icons/EnterFullScreen'
 import { ExitFullScreen } from '../icons/ExitFullScreen'
 import { flexStyle, buttonStyle } from './styles'
@@ -21,7 +21,7 @@ const fullScreenIconStyle = {
   pointerEvents: 'auto',
 } as React.CSSProperties
 
-export const FullScreen = () => {
+export const FullScreen = memo(() => {
   const [isFullScreen, setIsFullScreen] = useState(false)
   const handleClickFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -50,4 +50,4 @@ export const FullScreen = () => {
       </button>
     </div>
   )
-}
+})

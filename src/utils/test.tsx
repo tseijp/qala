@@ -1,3 +1,6 @@
+import { scoreStone } from './score'
+import { moveStone, captureStone } from './stone'
+import { checkEnd, checkExtra, checkCapture } from './check'
 export const logger = () => {
   console.log(
     `
@@ -22,16 +25,27 @@ export const expect = (a: unknown) => {
 }
 
 // logger();
-// // unit test
-// expect(moveStone([1, 2, 0, 3, 4, 0], 0)).toBe([0, 3, 0, 3, 4, 0]);
-// expect(moveStone([1, 2, 0, 3, 4, 0], 3)).toBe([2, 2, 0, 0, 5, 1]);
-// expect(stealStone([1, 0, 0, 3, 4, 0], 0)).toBe([0, 0, 4, 0, 4, 0]);
-// expect(stealStone([0, 5, 0, 3, 4, 0], 1)).toBe([0, 0, 7, 4, 0, 1]);
-// expect(scoreStone([1, 2, 0, 3, 4, 0])).toBe([3, 7]);
-// expect(scoreStone([1, 2, 0, 0, 0, 0])).toBe([3, 0]);
-// expect(checkEnd([1, 2, 0, 3, 4, 0])).toBe(false);
-// expect(checkEnd([1, 2, 0, 0, 0, 0])).toBe(true);
-// expect(checkJust([1, 1, 0, 3, 4, 0], 1)).toBe(true);
-// expect(checkJust([1, 2, 0, 3, 4, 0], 4)).toBe(false);
-// expect(checkSteal([1, 0, 0, 3, 4, 0], 0)).toBe(true);
-// expect(checkSteal([1, 0, 0, 3, 3, 0], 4)).toBe(false);
+// unit test for basic and kalah
+expect(moveStone([1, 2, 0, 3, 4, 0], 0, 'kalah')).toBe([0, 3, 0, 3, 4, 0])
+expect(moveStone([1, 2, 0, 3, 4, 0], 3, 'kalah')).toBe([2, 2, 0, 0, 5, 1])
+expect(captureStone([1, 0, 0, 3, 4, 0], 0, 'kalah')).toBe([0, 0, 4, 0, 4, 0])
+expect(captureStone([0, 5, 0, 3, 4, 0], 1, 'kalah')).toBe([0, 0, 7, 4, 0, 1])
+expect(scoreStone([1, 2, 0, 3, 4, 0])).toBe([3, 7])
+expect(scoreStone([1, 2, 0, 0, 0, 0])).toBe([3, 0])
+expect(checkEnd([1, 2, 0, 3, 4, 0], 'kalah')).toBe(false)
+expect(checkEnd([1, 2, 0, 0, 0, 0], 'kalah')).toBe(true)
+expect(checkExtra([1, 1, 0, 3, 4, 0], 1)).toBe(true)
+expect(checkExtra([1, 2, 0, 3, 4, 0], 4)).toBe(false)
+expect(checkCapture([1, 0, 0, 3, 4, 0], 0, 'kalah')).toBe(true)
+expect(checkCapture([1, 0, 0, 3, 3, 0], 4, 'kalah')).toBe(false)
+
+// unit test for oware
+expect(moveStone([1, 2, 0, 3, 4, 0], 0, 'oware')).toBe([0, 3, 0, 3, 4, 0])
+expect(moveStone([1, 2, 0, 3, 4, 0], 3, 'oware')).toBe([2, 3, 0, 0, 5, 0])
+expect(moveStone([1, 2, 0, 3, 4, 0], 4, 'oware')).toBe([3, 3, 0, 4, 0, 0])
+// expect(captureStone([1, 0, 0, 3, 4, 0], 0, 'oware')).toBe([0, 0, 4, 0, 4, 0])
+// expect(captureStone([0, 5, 0, 3, 4, 0], 1, 'oware')).toBe([0, 0, 7, 4, 0, 1])
+expect(checkEnd([1, 2, 0, 3, 4, 0], 'oware')).toBe(false)
+expect(checkEnd([1, 2, 0, 0, 0, 4], 'oware')).toBe(true)
+// expect(checkCapture([1, 2, 0, 3, 4, 0], 0, 'oware')).toBe(false)
+// expect(checkCapture([1, 2, 0, 3, 4, 0], 4, 'oware')).toBe(true)

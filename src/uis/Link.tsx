@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Github } from '../icons/Github'
 import { CodeSandbox } from '../icons/CodeSandbox'
 import { Twitter } from '../icons/Twitter'
@@ -29,7 +29,7 @@ const linkIconStyle = {
   pointerEvents: 'auto',
 } as React.CSSProperties
 
-export const Link = () => {
+export const Link = memo(() => {
   return (
     <div style={linkWrapStyle}>
       <a target="_blank" rel="noopener noreferrer" href={GITHUB_URL}>
@@ -43,4 +43,4 @@ export const Link = () => {
       </a>
     </div>
   )
-}
+})

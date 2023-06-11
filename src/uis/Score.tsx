@@ -85,11 +85,7 @@ export const Score = () => {
             <Plus />
           </button>
           <span style={spanStyle}>oware</span>
-          <Switch
-            value={_.type === 'oware'}
-            onSwitch={change['oware']}
-            disabled
-          />
+          <Switch value={_.type === 'oware'} onSwitch={change['oware']} />
         </div>
       </div>
       <Link />
