@@ -7,6 +7,8 @@ export interface GameStatus {
   current: boolean
   end: boolean
   extra: boolean
+  kalah: boolean
+  oware: boolean
   next: boolean
   start: boolean
   move: number

@@ -70,12 +70,18 @@ export const Game = ({ children }: { children: React.ReactNode }) => {
     'stone-': () => void
     'length+': () => void
     'length-': () => void
+    basic: () => void
+    kalah: () => void
+    oware: () => void
     init: (dm: number, dn: number) => void
   }>({
     'stone+': () => change.init(0, 1),
     'stone-': () => change.init(0, -1),
     'length+': () => change.init(1, 0),
     'length-': () => change.init(-1, 0),
+    basic() {},
+    kalah() {},
+    oware() {},
     init(dm, dn) {
       const history = _.histories[0]
       if (!history) return

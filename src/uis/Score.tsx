@@ -7,33 +7,44 @@ import { Plus } from '../icons/Plus'
 import { Minus } from '../icons/Minus'
 import { Previous } from '../icons/Previous'
 import { FullScreen } from './FullScreen'
-import { fontStyle, flexStyle, buttonStyle, spanStyle } from './styles'
+import { Switch } from './Switch'
+import {
+  fontStyle,
+  gridStyle,
+  flexStyle,
+  glassStyle,
+  buttonStyle,
+} from './styles'
 
 const wrapStyle = {
   ...fontStyle,
   ...flexStyle,
+  ...glassStyle,
+  fontSize: '2rem',
   position: 'absolute',
   top: '5%',
   width: '25rem',
   padding: '1.5rem 0',
   maxWidth: '95%',
-  height: '10%',
+  height: '5rem',
+  maxHeight: '10%',
   pointerEvents: 'auto',
-
-  // background
   borderRadius: '2rem',
-  backdropFilter: 'blur(2px)',
-  backgroundColor: 'rgba(0,255,255, 0)',
-  boxShadow: 'rgba(0, 0, 0, 0.3) 2px 8px 8px',
-  border: '1px rgba(255,255,255,0.4) solid',
-  borderBottom: '1px rgba(40,40,40,0.35) solid',
-  borderRight: '1px rgba(40,40,40,0.35) solid',
 } as React.CSSProperties
 
-const toolsStyle = {
+const gridWrapStyle = {
+  ...gridStyle,
+  gridTemplateColumns: 'repeat(6, auto)',
+  gridTemplateRows: 'repeat(2, auto)',
+  gridGap: '0.25rem',
+} as React.CSSProperties
+
+const spanStyle = {
   ...flexStyle,
-  flexDirection: 'row',
-  gap: '0.5rem',
+  marginLeft: '1rem',
+  marginRight: '0.25rem',
+  fontSize: '1rem',
+  height: '1rem',
 } as React.CSSProperties
 
 export const Score = () => {
@@ -49,27 +60,31 @@ export const Score = () => {
           {_.end && _.score[0] < _.score[1] && 'winnter'}
           {_.end && _.score[0] === _.score[1] && 'draw'}
         </div>
-        <div style={toolsStyle}>
+        <div style={gridWrapStyle}>
           <button style={buttonStyle} onClick={reset[0]}>
-            <Loop style={flexStyle} />
+            <Loop />
           </button>
-          <button style={buttonStyle} onClick={reset[_.move - 1]}>
-            <Previous style={flexStyle} />
-          </button>
-          <span style={spanStyle}>stone</span>
-          <button style={buttonStyle} onClick={change['stone+']}>
-            <Plus style={flexStyle} />
-          </button>
+          <span style={spanStyle}>seed</span>
           <button style={buttonStyle} onClick={change['stone-']}>
-            <Minus style={flexStyle} />
+            <Minus />
           </button>
-          <span style={spanStyle}>length</span>
-          <button style={buttonStyle} onClick={change['length+']}>
-            <Plus style={flexStyle} />
+          <button style={buttonStyle} onClick={change['stone+']}>
+            <Plus />
           </button>
+          <span style={spanStyle}>kalah</span>
+          <Switch />
+          <button style={buttonStyle} onClick={reset[_.move - 1]}>
+            <Previous />
+          </button>
+          <span style={spanStyle}>size</span>
           <button style={buttonStyle} onClick={change['length-']}>
-            <Minus style={flexStyle} />
+            <Minus />
           </button>
+          <button style={buttonStyle} onClick={change['length+']}>
+            <Plus />
+          </button>
+          <span style={spanStyle}>oware</span>
+          <Switch />
         </div>
       </div>
       <Link />
