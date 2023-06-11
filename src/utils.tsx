@@ -23,7 +23,7 @@ export const moveStone = ($ = [0], i = 0) => {
   return ret
 }
 
-export const stealStone = ($ = [0], i = 0) => {
+export const captureStone = ($ = [0], i = 0) => {
   const ret = moveStone($, i),
     l = $.length,
     h = floor(l / 2),
@@ -35,7 +35,7 @@ export const stealStone = ($ = [0], i = 0) => {
   return ret
 }
 
-export const checkSteal = ($ = [0], i = 0) => {
+export const checkCapture = ($ = [0], i = 0) => {
   const l = $.length,
     h = floor(l / 2),
     from = ($[i] + i) % l,
@@ -45,7 +45,7 @@ export const checkSteal = ($ = [0], i = 0) => {
   return $[to] !== 0 && $[from] === 0
 }
 
-export const checkJust = ($ = [0], i = 0) => {
+export const checkExtra = ($ = [0], i = 0) => {
   const l = $.length,
     h = floor(l / 2),
     k = (i < h ? h : l) - 1

@@ -9,7 +9,7 @@ const d = 1
 
 export const Floor = () => {
   const { width, height } = useThree((state) => state.viewport)
-  const [ret, set] = useState<any>(null)
+  const [ret, set] = useState<JSX.Element | null>(null)
   const update = useRef(() => set(<FloorImpl width={width} height={height} />))
   const changed = width < height
 
@@ -23,10 +23,11 @@ export const Floor = () => {
 const FloorImpl = ({ width, height }: { width: number; height: number }) => {
   const n = (width / 3) << 0 // 20
   const map = useLoader(TextureLoader, '/wood.jpg').clone()
-  console.log('HI')
+
   map.wrapS = RepeatWrapping
   map.wrapT = RepeatWrapping
   map.repeat.set(n * 2, 1)
+
   return (
     // @ts-ignore
     <mesh position-y={-2 - d} rotation-x={-Math.PI / 2}>
