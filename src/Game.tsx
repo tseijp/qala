@@ -1,5 +1,11 @@
-import { useState, useContext, createContext, useRef } from 'react'
-import { useMutable, useEvent } from 'reev/react'
+import {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  useRef,
+  useTransition,
+} from 'react'
 import {
   scoreStone,
   initStone,
@@ -9,10 +15,14 @@ import {
   checkCapture,
   checkEnd,
 } from './utils'
+import { useMutable, useEvent } from 'reev/react'
 import type { GameStatus, GameState, Stones } from './types'
 
-const initStones = initStone(3, 4) as Stones
-const initStatus = {
+const initSize = 3
+const initSeed = 4
+const initGameType = 'kalah'
+const initStones: Stones = initStone(initSize, initSeed)
+const initStatus: GameStatus = {
   current: false,
   capture: false,
   end: checkEnd(initStones),
@@ -20,9 +30,12 @@ const initStatus = {
   next: false,
   start: true,
   move: 0,
-  score: scoreStone(initStones),
+  size: initSize,
+  seed: initSeed,
+  type: initGameType,
+  score: scoreStone(initStones, initGameType),
   histories: [],
-} as GameStatus
+}
 
 initStatus.histories.push({ _: { ...initStatus }, $: initStones })
 
@@ -31,6 +44,7 @@ export const useGame = () => useContext(GameContext)
 
 export const Game = ({ children }: { children: React.ReactNode }) => {
   const [$, set] = useState(initStones)
+  const [, startTransition] = useTransition()
   const _ = useRef(initStatus).current
 
   const click = useMutable(
@@ -44,12 +58,12 @@ export const Game = ({ children }: { children: React.ReactNode }) => {
       _.start = false
       _.current = _.next
       _.extra = checkExtra($, i)
-      _.capture = checkCapture($, i)
+      _.capture = checkCapture($, i, _.type)
       if (!_.extra) _.next = !_.next
       if (_.capture) stones = captureStone(stones, i)
       else stones = moveStone(stones, i)
       _.end = checkEnd(stones)
-      _.score = scoreStone(stones)
+      _.score = scoreStone(stones, _.type)
       _.histories.push({ _: { ..._ }, $: stones })
       set(stones)
     })
@@ -61,37 +75,40 @@ export const Game = ({ children }: { children: React.ReactNode }) => {
       if (!history) return
       Object.assign(_, history._)
       _.histories = _.histories.slice(0, i + 1)
-      set(history.$)
+      startTransition(() => set(history.$))
     })
   )
 
   const change = useEvent<{
+    assign: (gameStatus: GameStatus, stones?: Stones) => void
+    init: (dm: number, dn: number) => void
+    kalah: (checked: boolean) => void
+    oware: (checked: boolean) => void
     'stone+': () => void
     'stone-': () => void
     'length+': () => void
     'length-': () => void
-    basic: () => void
-    kalah: () => void
-    oware: () => void
-    init: (dm: number, dn: number) => void
   }>({
+    assign(gameStatus, stones) {
+      const history = _.histories[0]
+      history.$ = stones || [...history.$]
+      Object.assign(history._, gameStatus)
+      reset[0]()
+    },
+    init(dm, dn) {
+      const size = _.size + dm
+      const seed = _.seed + dn
+      if (size <= 1 || seed <= 0) return
+      const stones = initStone(size, seed)
+      const score = scoreStone(stones, _.type)
+      change.assign({ size, seed, score }, stones)
+    },
+    kalah: (checked) => change.assign({ type: checked ? 'kalah' : 'basic' }),
+    oware: (checked) => change.assign({ type: checked ? 'oware' : 'basic' }),
     'stone+': () => change.init(0, 1),
     'stone-': () => change.init(0, -1),
     'length+': () => change.init(1, 0),
     'length-': () => change.init(-1, 0),
-    basic() {},
-    kalah() {},
-    oware() {},
-    init(dm, dn) {
-      const history = _.histories[0]
-      if (!history) return
-      const m = ((history.$.length - 2) / 4) << 0
-      const n = history.$[0]
-      if (m + dm <= 0 || n + dn <= 0) return
-      history.$ = initStone(m + dm, n + dn)
-      history._.score = scoreStone(history.$)
-      reset[0]()
-    },
   })
 
   return (

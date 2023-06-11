@@ -49,15 +49,16 @@ const spanStyle = {
 
 export const Score = () => {
   const { _, reset, change } = useGame()
+  const isLeftWinner = _.score[0] > _.score[1] !== (_.type === 'basic')
 
   return (
     <Html display>
       {/* <img alt="" src="/tmp.png" style={_debugStyle} /> */}
       <div style={wrapStyle}>
         <div>
-          {_.end && _.score[0] > _.score[1] && 'winnter'}
+          {_.end && isLeftWinner && 'winnter'}
           {_.score[0]}:{_.score[1]}
-          {_.end && _.score[0] < _.score[1] && 'winnter'}
+          {_.end && !isLeftWinner && 'winnter'}
           {_.end && _.score[0] === _.score[1] && 'draw'}
         </div>
         <div style={gridWrapStyle}>
@@ -72,7 +73,7 @@ export const Score = () => {
             <Plus />
           </button>
           <span style={spanStyle}>kalah</span>
-          <Switch />
+          <Switch value={_.type === 'kalah'} onSwitch={change['kalah']} />
           <button style={buttonStyle} onClick={reset[_.move - 1]}>
             <Previous />
           </button>
@@ -84,7 +85,11 @@ export const Score = () => {
             <Plus />
           </button>
           <span style={spanStyle}>oware</span>
-          <Switch />
+          <Switch
+            value={_.type === 'oware'}
+            onSwitch={change['oware']}
+            disabled
+          />
         </div>
       </div>
       <Link />
