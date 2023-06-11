@@ -35,7 +35,7 @@ export const buttonStyle = {
 
 export const glassStyle = {
   backdropFilter: 'blur(2px)',
-  backgroundColor: 'rgba(0,255,255, 0.01)',
+  background: 'rgba(0,255,255, 0.01)',
   boxShadow: 'rgba(0, 0, 0, 0.3) 2px 8px 8px',
   border: '1px rgba(255,255,255,0.4) solid',
   borderBottom: '1px rgba(40,40,40,0.35) solid',

@@ -1,3 +1,5 @@
+export type GameType = 'basic' | 'kalah' | 'oware'
+
 export type Vec3 = [x: number, y: number, z: number]
 
 export type Stones = number[]
@@ -7,12 +9,13 @@ export interface GameStatus {
   current: boolean
   end: boolean
   extra: boolean
-  kalah: boolean
-  oware: boolean
   next: boolean
   start: boolean
   move: number
+  size: number
+  seed: number
   score: number[]
+  type: GameType
   histories: History[]
 }
 
