@@ -52,15 +52,15 @@ export const Game = ({ children }: { children: React.ReactNode }) => {
       const h = (n / 2) << 0
       if (_.next ? i > h - 1 : i < h - 1) return
       if (i === h - 1 || i === n - 1 || !$[i]) return
-      let stones = [...$] as Stones
       _.move++
       _.start = false
       _.current = _.next
       _.extra = checkExtra($, i)
       _.capture = checkCapture($, i, _.type)
       if (!_.extra) _.next = !_.next
-      if (_.capture) stones = captureStone(stones, i, _.type)
-      else stones = moveStone(stones, i, _.type)
+      const stones = _.capture
+        ? captureStone($, i, _.type)
+        : moveStone($, i, _.type)
       _.end = checkEnd(stones, _.type)
       _.score = scoreStone(stones, _.type)
       _.histories.push({ _: { ..._ }, $: stones })
