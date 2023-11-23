@@ -1,6 +1,8 @@
-# @tsei/qala
+# 🎨@tsei/qala
 
-<img src="./public/readme.gif"></img>
+<a href="https://qala.tsei.jp">
+  <img src="https://qala.tsei.jp/readme.gif"></img>
+</a>
 
 <details>
 <summary>
