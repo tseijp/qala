@@ -1,7 +1,7 @@
-# 🎨@tsei/qala
+# 🎨qala
 
 <a href="https://qala.tsei.jp">
-  <img src="https://qala.tsei.jp/readme.gif"></img>
+  <img alt="🎨" src="https://qala.tsei.jp/readme.gif"></img>
 </a>
 
 <details>
